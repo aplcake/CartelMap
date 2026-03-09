@@ -273,7 +273,7 @@ export default function MapPage() {
             year={year}
             selectedState={selectedState}
             cartelFilter={selectedCartelFilter}
-            onStateHover={(code, x, y: any) => {
+            onStateHover={(code: any, x: any, y: any) => {
               setHoveredState(code);
               if (code) setTooltip({x, y, content: getStateInfo(code)});
               else setTooltip(null);
@@ -526,8 +526,8 @@ export default function MapPage() {
               {selectedBust && (() => {
                 const b = selectedBust;
                 const cartel = CARTELS.find(c=>c.id===b.cartelId);
-                const totalKg = b.drugs?.reduce((s,d: any)=>s+d.kg,0)||0;
-                const totalVal = b.drugs?.reduce((s,d: any)=>s+(d.streetValueUSD||0),0)||0;
+                const totalKg = b.drugs?.reduce((s: any,d: any)=>s+d.kg,0)||0;
+                const totalVal = b.drugs?.reduce((s: any,d: any)=>s+(d.streetValueUSD||0),0)||0;
                 return (
                   <div>
                     <div style={{background:'#0a1a0a',borderBottom:'1px solid #1a4a1a',padding:'12px 14px'}}>
@@ -574,7 +574,7 @@ export default function MapPage() {
                       {b.drugs && b.drugs.length>0 && (
                         <div style={{marginBottom:10}}>
                           <div style={{fontSize:9,color:'#444',textTransform:'uppercase',marginBottom:5}}>Drug Breakdown</div>
-                          {b.drugs.map((d,i: any) => (
+                          {b.drugs.map((d: any,i: any) => (
                             <div key={i} style={{display:'flex',justifyContent:'space-between',padding:'3px 0',borderBottom:'1px solid #1a1a2e',fontSize:11}}>
                               <span style={{color:'#888',textTransform:'capitalize'}}>{d.type}</span>
                               <span style={{color:'#4ade80'}}>{d.kg>=1000?`${(d.kg/1000).toFixed(1)}t`:`${d.kg}kg`}</span>
@@ -693,7 +693,7 @@ export default function MapPage() {
               {layerMode==='attacks' && activeAttacks.length>0 && (
                 <div style={{marginBottom:14}}>
                   {activeAttacks
-                    .slice().sort((a,b: any) => (b.killed||0)-(a.killed||0))
+                    .slice().sort((a: any,b: any) => (b.killed||0)-(a.killed||0))
                     .map((a: any) => {
                       const att = CARTELS.find(c=>c.id===a.attackerCartelId);
                       return (
@@ -715,7 +715,7 @@ export default function MapPage() {
               {layerMode==='sites' && activeSites.length>0 && (
                 <div style={{marginBottom:14}}>
                   {activeSites
-                    .slice().sort((a,b: any)=>(b.victims||0)-(a.victims||0))
+                    .slice().sort((a: any,b: any)=>(b.victims||0)-(a.victims||0))
                     .map((s: any) => (
                       <div key={s.id} onClick={()=>{setSelectedSite(s);setSelectedAttack(null);setSelectedBust(null);setSelectedState(null);if(s.lat&&s.lng)mapRef.current?.flyTo(s.lat,s.lng,8);}}
                         style={{background:'#111',borderRadius:6,padding:'8px 10px',marginBottom:5,borderLeft:'2px solid #3b82f6',cursor:'pointer'}}>
@@ -734,14 +734,14 @@ export default function MapPage() {
               {layerMode==='busts' && activeBusts.length>0 && (
                 <div style={{marginBottom:14}}>
                   {activeBusts
-                    .slice().sort((a,b: any)=>{
-                      const akg = a.drugs?.reduce((s,d: any)=>s+d.kg,0)||0;
-                      const bkg = b.drugs?.reduce((s,d: any)=>s+d.kg,0)||0;
+                    .slice().sort((a: any,b: any)=>{
+                      const akg = a.drugs?.reduce((s: any,d: any)=>s+d.kg,0)||0;
+                      const bkg = b.drugs?.reduce((s: any,d: any)=>s+d.kg,0)||0;
                       return bkg-akg;
                     })
                     .map((bust: any) => {
-                      const kg = bust.drugs?.reduce((s,d: any)=>s+d.kg,0)||0;
-                      const val = bust.drugs?.reduce((s,d: any)=>s+(d.streetValueUSD||0),0)||0;
+                      const kg = bust.drugs?.reduce((s: any,d: any)=>s+d.kg,0)||0;
+                      const val = bust.drugs?.reduce((s: any,d: any)=>s+(d.streetValueUSD||0),0)||0;
                       return (
                         <div key={bust.id} onClick={()=>{setSelectedBust(bust);setSelectedAttack(null);setSelectedSite(null);setSelectedState(null);if(bust.lat&&bust.lng)mapRef.current?.flyTo(bust.lat,bust.lng,8);}}
                           style={{background:'#111',borderRadius:6,padding:'8px 10px',marginBottom:5,borderLeft:`2px solid ${bust.significance==='critical'?'#4ade80':'#1a3a1a'}`,cursor:'pointer'}}>
@@ -785,7 +785,7 @@ export default function MapPage() {
               {/* ─ HOTSPOTS list ─ */}
               {layerMode==='hotspots' && activeHotspots.length>0 && (
                 <div ref={hotspotListRef} style={{marginBottom:14}}>
-                  {activeHotspots.sort((a,b: any)=>b.intensity-a.intensity).map((h: any) => (
+                  {activeHotspots.sort((a: any,b: any)=>b.intensity-a.intensity).map((h: any) => (
                     <div
                       key={h.id}
                       id={`hotspot-${h.id}`}
