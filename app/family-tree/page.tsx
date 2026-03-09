@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, Suspense, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { PEOPLE, CARTELS, Person, NOTABLE_CONNECTIONS, NotableConnection } from '@/lib/data';
@@ -782,7 +782,7 @@ function CartelLineageView({ selectedPerson, onSelectPerson }: { selectedPerson:
 }
 
 // ── Main Page ────────────────────────────────────────────
-export default function FamilyTreePage() {
+function FamilyTreePageInner() {
   const [activeGroup, setActiveGroup] = useState('sinaloa_dynasty');
   const [selectedPerson, setSelectedPerson] = useState<Person|null>(null);
   const [viewMode, setViewMode] = useState<'trees'|'all'|'lineage'>('trees');
@@ -940,5 +940,13 @@ export default function FamilyTreePage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function FamilyTreePage() {
+  return (
+    <Suspense fallback={<div style={{background:'#080810',minHeight:'100vh'}}/>}>
+      <FamilyTreePageInner />
+    </Suspense>
   );
 }
