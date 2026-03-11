@@ -58,3 +58,19 @@ npm run scrape:openai -- --file urls.txt
 - This tool is intentionally separate from website runtime/build.
 - Current scraper mode is **URL-driven extraction** (not RSS crawling).
 - Respect source terms of service when scraping.
+
+
+## Why it can still be "fussy"
+
+Even though this tool is fully standalone, GitHub merge conflicts can still happen when:
+
+- two branches edit the same files (`cartel-scraper/README.md`, `cartel-scraper/package.json`)
+- one branch removes old `scrape.js` docs while another branch edits those same lines
+
+That is a **git history overlap issue**, not a runtime dependency on the Next.js app.
+
+Runtime/build isolation remains true:
+
+- root app build does not import this folder
+- scraper has its own `package.json` + lockfile
+- scraper runs only when you `cd cartel-scraper && npm run ...`

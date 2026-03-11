@@ -1,6 +1,6 @@
 {
   "name": "cartel-scraper",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "private": true,
   "description": "Standalone scraper outside Next.js app with Anthropic + OpenAI variants",
   "type": "module",
@@ -19,7 +19,6 @@
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
-    "openai": "^4.63.0",
-    "rss-parser": "^3.13.0"
+    "openai": "^4.63.0"
   }
 }
