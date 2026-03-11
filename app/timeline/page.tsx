@@ -2,6 +2,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { HISTORICAL_EVENTS, CARTELS, PEOPLE, HistoricalEvent, ERA_LABELS, getEraForYear } from '@/lib/data';
+import CoffeeButton from '@/components/CoffeeButton';
 
 const CARTEL_COLORS: Record<string, string> = {
   proto_sinaloa:'#5a1a1a', gulf_proto:'#1a2a5a', guadalajara:'#8B1A1A',
@@ -310,6 +311,10 @@ export default function TimelinePage() {
           )}
         </div>
       </div>
+
+
+
+      {!selectedEvent && <CoffeeButton bottom={isMobile ? 12 : 14} size={isMobile ? 34 : 38} />}
 
       {isMobile && selectedEvent && (
         <div style={{position:'fixed',inset:0,zIndex:1400,background:'#0a0a16'}}>

@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import PersonPanel from '@/components/PersonPanel';
+import CoffeeButton from '@/components/CoffeeButton';
 import { Person,
   TERRITORY_PERIODS, CARTELS, PEOPLE, CARTEL_WARS, VIOLENCE_HOTSPOTS,
   TRAFFICKING_ROUTES, MEXICO_STATES, CARTEL_ATTACKS, CartelAttack,
@@ -971,6 +972,10 @@ function MapPageInner() {
           style={{width:'100%',accentColor:'#C8282D'}}
         />
       </div>
+    )}
+
+    {!hasSelection && (
+      <CoffeeButton bottom={isMobile ? 94 : 14} size={isMobile ? 34 : 38} />
     )}
 
     {/* ── PERSON PANEL (slide-over) ── */}

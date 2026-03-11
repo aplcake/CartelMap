@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { PEOPLE, CARTELS, Person, NOTABLE_CONNECTIONS, NotableConnection } from '@/lib/data';
 import PersonPhoto from '@/components/PersonPhoto';
 import CartelLogo from '@/components/CartelLogo';
+import CoffeeButton from '@/components/CoffeeButton';
 
 const CARTEL_COLORS: Record<string, string> = {
   proto_sinaloa:'#5a1a1a',gulf_proto:'#1a2a5a',guadalajara:'#8B1A1A',
@@ -947,6 +948,10 @@ function FamilyTreePageInner() {
           </div>
         </div>
       )}
+
+
+
+      {!selectedPerson && <CoffeeButton bottom={isMobile ? 12 : 14} size={isMobile ? 34 : 38} />}
 
       {isMobile && selectedPerson && (
         <div style={{position:'fixed',inset:0,zIndex:1400,background:'#0a0a16'}}>

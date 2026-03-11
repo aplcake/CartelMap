@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { CARTELS, PEOPLE, HISTORICAL_EVENTS } from '@/lib/data';
+import CoffeeButton from '@/components/CoffeeButton';
 
 export default function HomePage() {
   const totalDeaths = 120000; // estimated from all wars
@@ -90,6 +91,8 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      <CoffeeButton />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import {
   CARTELS, PEOPLE, CARTEL_WARS, CARTEL_ATTACKS, DRUG_BUSTS,
@@ -7,6 +7,7 @@ import {
   Person, Cartel
 } from '@/lib/data';
 import PersonPhoto from '@/components/PersonPhoto';
+import CoffeeButton from '@/components/CoffeeButton';
 
 const CARTEL_COLORS: Record<string, string> = {
   proto_sinaloa:'#5a1a1a', gulf_proto:'#1a2a5a', guadalajara:'#8B1A1A',
@@ -683,6 +684,14 @@ export default function CartelsPage() {
   const [statusFilter, setStatusFilter] = useState<string | null>(null);
   const [eraFilter, setEraFilter] = useState<string | null>(null);
   const [search, setSearch] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 900);
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const selectedCartel = selected ? CARTELS.find(c => c.id === selected) : null;
 
@@ -876,6 +885,8 @@ export default function CartelsPage() {
           onSelectCartel={(id) => setSelected(id)}
         />
       )}
+
+      {!selectedCartel && <CoffeeButton bottom={isMobile ? 12 : 14} size={isMobile ? 34 : 38} />}
     </div>
   );
 }
