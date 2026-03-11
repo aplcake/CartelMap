@@ -326,6 +326,13 @@ function MapPageInner() {
             </div>
           )}
 
+          <CoffeeButton
+            position='absolute'
+            bottom={isMobile ? 94 : 14}
+            right={12}
+            size={isMobile ? 34 : 44}
+            zIndex={1100}
+          />
 
         </div>
 
@@ -974,9 +981,6 @@ function MapPageInner() {
       </div>
     )}
 
-    {!hasSelection && (
-      <CoffeeButton bottom={isMobile ? 94 : 14} size={isMobile ? 34 : 38} />
-    )}
 
     {/* ── PERSON PANEL (slide-over) ── */}
     <PersonPanel

@@ -5,11 +5,15 @@ export default function CoffeeButton({
   right = 12,
   size = 38,
   zIndex = 1240,
+  position = 'fixed',
+  style,
 }: {
   bottom?: number;
   right?: number;
   size?: number;
   zIndex?: number;
+  position?: 'fixed' | 'absolute';
+  style?: React.CSSProperties;
 }) {
   return (
     <a
@@ -19,7 +23,7 @@ export default function CoffeeButton({
       title='Buy me a coffee'
       aria-label='Support on Ko-fi'
       style={{
-        position: 'fixed',
+        position,
         right,
         bottom,
         zIndex,
@@ -34,6 +38,7 @@ export default function CoffeeButton({
         background: '#1a1a2e',
         border: '1px solid #3a3a55',
         boxShadow: '0 4px 18px rgba(0,0,0,0.35)',
+        ...style,
       }}
     >
       ☕

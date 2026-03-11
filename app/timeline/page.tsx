@@ -314,7 +314,12 @@ export default function TimelinePage() {
 
 
 
-      {!selectedEvent && <CoffeeButton bottom={isMobile ? 12 : 14} size={isMobile ? 34 : 38} />}
+
+      <CoffeeButton
+        bottom={isMobile ? 12 : 14}
+        right={isMobile ? 12 : 372}
+        size={isMobile ? 34 : 44}
+      />
 
       {isMobile && selectedEvent && (
         <div style={{position:'fixed',inset:0,zIndex:1400,background:'#0a0a16'}}>
