@@ -1,10 +1,13 @@
 {
   "name": "cartel-scraper",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "private": true,
+  "description": "Standalone scraper outside Next.js app with Anthropic + OpenAI variants",
   "type": "module",
-  "description": "Standalone local scraper + LLM structuring tool (Anthropic/OpenAI variants)",
   "scripts": {
+    "scrape": "node scrape-anthropic.mjs",
+    "scrape:anthropic": "node scrape-anthropic.mjs",
+    "scrape:openai": "node scrape-openai.mjs",
     "anthropic": "node scrape-anthropic.mjs",
     "openai": "node scrape-openai.mjs",
     "check": "node --check scrape-anthropic.mjs && node --check scrape-openai.mjs"
@@ -14,6 +17,7 @@
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
-    "openai": "^4.63.0"
+    "openai": "^4.63.0",
+    "rss-parser": "^3.13.0"
   }
 }
