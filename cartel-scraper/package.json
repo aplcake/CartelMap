@@ -1,11 +1,13 @@
 {
   "name": "cartel-scraper",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "description": "Standalone scraper outside Next.js app with Anthropic + OpenAI variants",
   "type": "module",
   "scripts": {
     "scrape": "node scrape-anthropic.mjs",
+    "scrape:quick": "node scrape-anthropic.mjs --limit 10",
+    "scrape:dry": "node scrape-anthropic.mjs --dry-run",
     "scrape:anthropic": "node scrape-anthropic.mjs",
     "scrape:openai": "node scrape-openai.mjs",
     "anthropic": "node scrape-anthropic.mjs",

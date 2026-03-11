@@ -20,6 +20,8 @@ cp .env.example .env
 
 ```bash
 npm run scrape -- --url "https://example.com/article"            # default (Anthropic)
+npm run scrape:quick -- --file urls.txt                           # first 10 URLs
+npm run scrape:dry -- --url "https://example.com/article"        # no files written
 npm run scrape:anthropic -- --url "https://example.com/article"
 npm run scrape:openai -- --url "https://example.com/article"
 ```
@@ -41,15 +43,18 @@ npm run scrape:openai -- --file urls.txt
 ## Output
 
 - `output/<slug>.json` per URL
-- `output/_run-summary.json` for full run status
+- `output/_run-summary.json` for full run status (not written in `--dry-run`)
 
 ## Optional flags
 
 - `--model <id>` override default model
 - `--outdir <dir>` output directory (default: `./output`)
 - `--maxChars <n>` cap extracted text sent to LLM (default: `24000`)
+- `--limit <n>` process only first N URLs
+- `--dry-run` print extraction preview without writing output files
 
 ## Notes
 
 - This tool is intentionally separate from website runtime/build.
+- Current scraper mode is **URL-driven extraction** (not RSS crawling).
 - Respect source terms of service when scraping.

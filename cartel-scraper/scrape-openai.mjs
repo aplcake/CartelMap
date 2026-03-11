@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 function parseArgs(argv) {
-  const args = { urls: [], outdir: 'output', maxChars: 24000, model: process.env.SCRAPER_MODEL_OPENAI || 'gpt-4o-mini' };
+  const args = { urls: [], outdir: 'output', maxChars: 24000, limit: null, dryRun: false, model: process.env.SCRAPER_MODEL_OPENAI || 'gpt-4o-mini' };
   for (let i = 2; i < argv.length; i += 1) {
     const a = argv[i];
     if (a === '--url') args.urls.push(argv[++i]);
@@ -17,6 +17,8 @@ function parseArgs(argv) {
     else if (a === '--outdir') args.outdir = argv[++i];
     else if (a === '--maxChars') args.maxChars = Number(argv[++i]);
     else if (a === '--model') args.model = argv[++i];
+    else if (a === '--limit') args.limit = Number(argv[++i]);
+    else if (a === '--dry-run') args.dryRun = true;
   }
   return args;
 }
@@ -55,6 +57,7 @@ async function run() {
 
   if (args.file) args.urls.push(...(await readUrlsFromFile(args.file)));
   args.urls = [...new Set(args.urls.filter(Boolean))];
+  if (args.limit && Number.isFinite(args.limit)) args.urls = args.urls.slice(0, Math.max(0, args.limit));
   if (args.urls.length === 0) {
     console.error('Provide at least one --url or --file');
     process.exit(1);
@@ -80,18 +83,28 @@ async function run() {
       const content = response.choices?.[0]?.message?.content || '{}';
       const parsed = JSON.parse(content);
       const outPath = path.join(args.outdir, `${slugify(url)}.json`);
-      await fs.writeFile(outPath, JSON.stringify(parsed, null, 2));
-      summary.push({ url, ok: true, outPath });
-      console.log(`✓ ${url} -> ${outPath}`);
+      if (args.dryRun) {
+        summary.push({ url, ok: true, dryRun: true, preview: parsed?.summary || null });
+        console.log(`✓ ${url} -> (dry-run)`);
+      } else {
+        await fs.writeFile(outPath, JSON.stringify(parsed, null, 2));
+        summary.push({ url, ok: true, outPath });
+        console.log(`✓ ${url} -> ${outPath}`);
+      }
     } catch (err) {
       summary.push({ url, ok: false, error: String(err?.message || err) });
       console.error(`✗ ${url} -> ${String(err?.message || err)}`);
     }
   }
 
-  const summaryPath = path.join(args.outdir, '_run-summary.json');
-  await fs.writeFile(summaryPath, JSON.stringify(summary, null, 2));
-  console.log(`Run summary: ${summaryPath}`);
+  if (args.dryRun) {
+    console.log('Run summary (dry-run):');
+    console.log(JSON.stringify(summary, null, 2));
+  } else {
+    const summaryPath = path.join(args.outdir, '_run-summary.json');
+    await fs.writeFile(summaryPath, JSON.stringify(summary, null, 2));
+    console.log(`Run summary: ${summaryPath}`);
+  }
 }
 
 run();
