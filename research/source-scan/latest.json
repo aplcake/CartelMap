@@ -1,0 +1,123 @@
+{
+  "generatedAt": "2026-03-14T16:07:59.377Z",
+  "baselineSourcesAlreadyUsed": [
+    "El Universal",
+    "Milenio",
+    "InSight Crime",
+    "Proceso",
+    "Animal Político",
+    "Sin Embargo",
+    "Zeta Tijuana",
+    "Reforma",
+    "NTR Guadalajara",
+    "Borderland Beat",
+    "Riodoce",
+    "Noroeste",
+    "El Debate"
+  ],
+  "scannedFeeds": [
+    {
+      "name": "La Jornada",
+      "url": "https://www.jornada.com.mx/rss/ultimasnoticias.xml"
+    },
+    {
+      "name": "Aristegui Noticias",
+      "url": "https://aristeguinoticias.com/feed/"
+    },
+    {
+      "name": "El Financiero",
+      "url": "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml"
+    },
+    {
+      "name": "Excélsior Nacional",
+      "url": "https://www.excelsior.com.mx/rss.xml"
+    },
+    {
+      "name": "Forbes México",
+      "url": "https://www.forbes.com.mx/feed/"
+    },
+    {
+      "name": "AP News Latin America",
+      "url": "https://apnews.com/hub/latin-america?output=rss"
+    },
+    {
+      "name": "Reuters World News",
+      "url": "https://www.reutersagency.com/feed/?best-topics=crime-law-and-justice&post_type=best"
+    },
+    {
+      "name": "DW Español",
+      "url": "https://rss.dw.com/xml/rss-sp-all"
+    },
+    {
+      "name": "BBC Mundo",
+      "url": "https://feeds.bbci.co.uk/mundo/rss.xml"
+    },
+    {
+      "name": "El País América",
+      "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/america/portada"
+    }
+  ],
+  "recommendedNewSources": [],
+  "results": [
+    {
+      "ok": false,
+      "source": "La Jornada",
+      "url": "https://www.jornada.com.mx/rss/ultimasnoticias.xml",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "Aristegui Noticias",
+      "url": "https://aristeguinoticias.com/feed/",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "El Financiero",
+      "url": "https://www.elfinanciero.com.mx/arc/outboundfeeds/rss/?outputType=xml",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "Excélsior Nacional",
+      "url": "https://www.excelsior.com.mx/rss.xml",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "Forbes México",
+      "url": "https://www.forbes.com.mx/feed/",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "AP News Latin America",
+      "url": "https://apnews.com/hub/latin-america?output=rss",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "Reuters World News",
+      "url": "https://www.reutersagency.com/feed/?best-topics=crime-law-and-justice&post_type=best",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "DW Español",
+      "url": "https://rss.dw.com/xml/rss-sp-all",
+      "error": "fetch failed"
+    },
+    {
+      "ok": false,
+      "source": "BBC Mundo",
+      "url": "https://feeds.bbci.co.uk/mundo/rss.xml",
+      "error": "connect ENETUNREACH 23.14.140.171:443 - Local (0.0.0.0:0)"
+    },
+    {
+      "ok": false,
+      "source": "El País América",
+      "url": "https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/america/portada",
+      "error": "connect ENETUNREACH 146.75.106.133:443 - Local (0.0.0.0:0)"
+    }
+  ]
+}
